@@ -1,7 +1,7 @@
 metadata:
   name: dotnet-web
 projects:
-  - name: dotnet-three-example
+  - name: qotd-csharp
     source:
       location: 'https://github.com/donschenck/qotd-csharp'
       type: git
@@ -43,7 +43,7 @@ apiVersion: 1.0.0
 commands:
   - name: build
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/dotnet-three-example'
+      - workdir: '${CHE_PROJECTS_ROOT}/qotd-csharp'
         type: exec
         command: dotnet build
         component: dotnet
@@ -56,7 +56,7 @@ commands:
                 {
                     "type": "netcoredbg",
                     "request": "launch",
-                    "program": "/projects/dotnet-three-example/bin/Debug/netcoreapp3.0/dotnet-three-example.dll",
+                    "program": "/projects/qotd-csharp/bin/Debug/netcoreapp3.0/qotd-csharp.dll",
                     "args": [],
                     "name": ".NET Core Launch (console)",
                     "stopAtEntry": false,
@@ -67,13 +67,13 @@ commands:
         type: vscode-launch
   - name: run
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/dotnet-three-example'
+      - workdir: '${CHE_PROJECTS_ROOT}/qotd-csharp'
         type: exec
         command: dotnet run
         component: dotnet
   - name: update dependencies
     actions:
-      - workdir: '${CHE_PROJECTS_ROOT}/dotnet-three-example'
+      - workdir: '${CHE_PROJECTS_ROOT}/qotd-csharp'
         type: exec
         command: dotnet restore
         component: dotnet
