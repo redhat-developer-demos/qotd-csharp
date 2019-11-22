@@ -24,8 +24,8 @@ namespace qotd_csharp.Controllers
             //var rng = new Random();
             return new Quote
             {
-                QuoteText = "FOO",
-                Author = "I. Said This"
+                QuoteText = "Knowledge is power.",
+                Author = "Francis Bacon"
             };
         }
     }
