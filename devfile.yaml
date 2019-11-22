@@ -27,7 +27,7 @@ components:
       - name: dotnet
         containerPath: /home/user
     alias: dotnet
-    image: 'mcr.microsoft.com/dotnet/core/sdk:3.0'
+    image: 'registry.access.redhat.com/ubi8/dotnet-30'
     args:
       - tail
       - '-f'

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace qotd_csharp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/")]
     public class QuoteController : ControllerBase
     {
         private readonly ILogger<QuoteController> _logger;
