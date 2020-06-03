@@ -4,8 +4,8 @@ namespace qotd_csharp
 {
     public class Quote
     {
-        public String QuoteText { get; set; }
-
+        public int Id {get; set;}
+        public String Quotation { get; set; }
         public String Author { get; set; }
 
     }
