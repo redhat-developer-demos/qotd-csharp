@@ -4,8 +4,7 @@ RUN mkdir qotd-csharp
 WORKDIR qotd-csharp
 ADD . .
 
-RUN export TMPDIR=/tmp/NuGetScratch
-RUN mkdir -p ${TMPDIR}
+RUN mkdir -p /tmp/NuGetScratch
 RUN dotnet publish -c Release
 
 EXPOSE 10000
