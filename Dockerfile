@@ -4,6 +4,7 @@ RUN mkdir qotd-csharp
 WORKDIR qotd-csharp
 ADD . .
 
-RUN dotnet publish -c Release 
+RUN dotnet publish -c Release
+RUN dotnet clean 
 EXPOSE 10000
-CMD ["dotnet", "run", "/bin/Release/netcoreapp3.0/publish/qotd-csharp.dll"]
+CMD ["dotnet", "run", "/bin/Release/netcoreapp3.0/linux-x64/publish/qotd-csharp.dll"]
