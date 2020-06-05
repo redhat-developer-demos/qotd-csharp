@@ -49,7 +49,7 @@ namespace qotd_csharp.Controllers
         [HttpGet("quotes/random")]
         public Quote Random() {
             Random r = new Random();
-            int i = r.Next(_quotes().Length-1);
+            int i = r.Next(_quotes().Length);
             return _quotes()[i];
         }
 
