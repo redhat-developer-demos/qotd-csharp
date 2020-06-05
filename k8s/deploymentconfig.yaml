@@ -2,7 +2,6 @@ apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
   name: qotd
-  namespace: pipelines-tutorial
   labels:
     app: qotd
 spec:
