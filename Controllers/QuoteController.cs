@@ -17,7 +17,7 @@ namespace qotd_csharp.Controllers
 
         private Quote[] _quotes() {
             Quote[] q = new Quote[6];
-            q[0] = new Quote {Id = 0, Quotation = "40 is the old age of youth, while 50 is the youth of old age", Author = "Victor Hugo"};
+            q[0] = new Quote {Id = 0, Quotation = "Forty is the old age of youth, while 50 is the youth of old age", Author = "Victor Hugo"};
             q[1] = new Quote{Id = 1, Quotation ="Knowledge is power.", Author ="Francis Bacon"};
             q[2] = new Quote{Id = 2, Quotation = "Life is really simple, but we insist on making it complicated.", Author = "Confucius"};
 	        q[3] = new Quote{Id = 3, Quotation = "This above all, to thine own self be true.", Author = "William Shakespeare"};
