@@ -7,5 +7,5 @@ ADD . .
 RUN dotnet publish -c Release
 
 EXPOSE 10000
-##CMD ["dotnet", "run", "/bin/Release/netcoreapp3.1/publish/qotd-csharp.dll"]
+
 CMD ["dotnet", "./bin/Release/netcoreapp3.0/publish/qotd-csharp.dll"]
