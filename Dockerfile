@@ -1,11 +1,22 @@
-FROM registry.access.redhat.com/ubi8/dotnet-31:3.1
-USER 1001
-RUN mkdir qotd-csharp
-WORKDIR qotd-csharp
-ADD . .
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-RUN dotnet publish -c Release
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-EXPOSE 10000
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY ["qotd-csharp.csproj", "."]
+RUN dotnet restore "./qotd-csharp.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "qotd-csharp.csproj" -c Release -o /app/build
 
-CMD ["dotnet", "./bin/Release/netcoreapp3.0/publish/qotd-csharp.dll"]
+FROM build AS publish
+RUN dotnet publish "qotd-csharp.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "qotd-csharp.dll"]

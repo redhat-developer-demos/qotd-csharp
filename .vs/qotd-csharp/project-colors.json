@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2be156a0-639e-4e0d-a635-0c8bbb655a68": {
+      "ProjectGuid": "2be156a0-639e-4e0d-a635-0c8bbb655a68",
+      "DisplayName": "qotd-csharp",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
