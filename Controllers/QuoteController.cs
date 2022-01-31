@@ -56,7 +56,8 @@ namespace qotd_csharp.Controllers
         [HttpGet("quotes/random")]
         public Quote Random() {
             Random r = new Random();
-            int i = r.Next(_quotes().Length);
+            int upperLimit = _quotes().Length;
+            int i = r.Next(upperLimit + 1);
             return _quotes()[i];
         }
 
