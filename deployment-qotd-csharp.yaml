@@ -20,3 +20,6 @@ spec:
         image: quay.io/donschenck/qotd-csharp:v1
         ports:
         - containerPort: 5000
+          protocol: TCP
+        imagePullPolicy: Always
+      restartPolicy: Always
