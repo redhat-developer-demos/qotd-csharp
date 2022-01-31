@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qotd-csharp-v2
+spec:
+  env:
+  - name: ASPNETCORE_URLS
+    value: 'http://0.0.0.0:5000'
+  replicas: 1
+  selector:
+    matchLabels:
+      app: qotd-csharp-v2
+  template:
+    metadata:
+      labels:
+        app: qotd-csharp-v2
+    spec:
+      containers:
+      - name: qotd-csharp-v2
+        image: quay.io/donschenck/qotd-csharp:v2
+        ports:
+        - containerPort: 5000
