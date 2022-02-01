@@ -17,7 +17,7 @@ namespace qotd_csharp.Controllers
 
         private Quote[] _quotes() {
             Quote[] q = new Quote[6];
-            q[0] = new Quote {Id = 0, Quotation = "I got a fever, and the only prescription is more cowbell.", Author = "Will Ferrell"};
+            q[0] = new Quote {Id = 0, Quotation = "******************************************I got a fever, and the only prescription is more cowbell.", Author = "Will Ferrell"};
             q[1] = new Quote{Id = 1, Quotation ="Knowledge is power.", Author ="Francis Bacon"};
             q[2] = new Quote{Id = 2, Quotation = "Life is really simple, but we insist on making it complicated.", Author = "Confucius"};
 	        q[3] = new Quote{Id = 3, Quotation = "This above all, to thine own self be true.", Author = "William Shakespeare"};
