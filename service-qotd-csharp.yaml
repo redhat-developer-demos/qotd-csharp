@@ -13,4 +13,4 @@ spec:
   selector:
     app: qotd-csharp
   sessionAffinity: None
-  type: NodePort
+  type: LoadBalancer

@@ -10,4 +10,3 @@ spec:
   to:
     kind: Service
     name: qotd-csharp
-    weight: 100
