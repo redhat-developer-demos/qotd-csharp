@@ -23,12 +23,12 @@ namespace qotd_csharp.Controllers
 	        q[3] = new Quote{Id = 3, Quotation = "This above all, to thine own self be true.", Author = "William Shakespeare"};
 	        q[4] = new Quote{Id = 4, Quotation = "Never complain. Never explain.", Author = "Katharine Hepburn"};
 	        q[5] = new Quote{Id = 5, Quotation = "Do be do be dooo.", Author = "Frank Sinatra"};
-            q[6] = new Quote {Id = 0, Quotation = "It's time to start living the life you've imagined.", Author = "Henry James"};
-            q[7] = new Quote{Id = 1, Quotation ="Courage is grace under pressure.", Author ="Ernest Hemingway"};
-            q[8] = new Quote{Id = 2, Quotation = "Either you run the day or the day runs you.", Author = "Jim Rohn"};
-	        q[9] = new Quote{Id = 3, Quotation = "Exercise is to the body as reading is to your mind.", Author = "Joseph Addison"};
-	        q[10] = new Quote{Id = 4, Quotation = "The universe rearranges itself to accommodate your picture of reality.", Author = "Unknown"};
-	        q[11] = new Quote{Id = 5, Quotation = "All our dreams can come true, if we have the courage to pursue them.", Author = "Walt Disney"};
+            q[6] = new Quote {Id = 6, Quotation = "It's time to start living the life you've imagined.", Author = "Henry James"};
+            q[7] = new Quote{Id = 7, Quotation ="Courage is grace under pressure.", Author ="Ernest Hemingway"};
+            q[8] = new Quote{Id = 8, Quotation = "Either you run the day or the day runs you.", Author = "Jim Rohn"};
+	        q[9] = new Quote{Id = 9, Quotation = "Exercise is to the body as reading is to your mind.", Author = "Joseph Addison"};
+	        q[10] = new Quote{Id = 10, Quotation = "The universe rearranges itself to accommodate your picture of reality.", Author = "Unknown"};
+	        q[11] = new Quote{Id = 11, Quotation = "All our dreams can come true, if we have the courage to pursue them.", Author = "Walt Disney"};
 
             return q;
         }
