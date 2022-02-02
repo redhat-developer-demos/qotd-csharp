@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MySqlConnector;
 
 namespace qotd_csharp.Controllers
 {
@@ -14,24 +15,6 @@ namespace qotd_csharp.Controllers
 
         private readonly ILogger<QuoteController> _logger;
 
-
-        private Quote[] _quotes() {
-            Quote[] q = new Quote[12];
-            q[0] = new Quote {Id = 0, Quotation = "I got a fever, and the only prescription is more cowbell!", Author = "Will Ferrell"};
-            q[1] = new Quote{Id = 1, Quotation ="Knowledge is power.", Author ="Francis Bacon"};
-            q[2] = new Quote{Id = 2, Quotation = "Life is really simple, but we insist on making it complicated.", Author = "Confucius"};
-	        q[3] = new Quote{Id = 3, Quotation = "This above all, to thine own self be true.", Author = "William Shakespeare"};
-	        q[4] = new Quote{Id = 4, Quotation = "Never complain. Never explain.", Author = "Katharine Hepburn"};
-	        q[5] = new Quote{Id = 5, Quotation = "Do be do be dooo.", Author = "Frank Sinatra"};
-            q[6] = new Quote {Id = 6, Quotation = "It's time to start living the life you've imagined.", Author = "Henry James"};
-            q[7] = new Quote{Id = 7, Quotation ="Courage is grace under pressure.", Author ="Ernest Hemingway"};
-            q[8] = new Quote{Id = 8, Quotation = "Either you run the day or the day runs you.", Author = "Jim Rohn"};
-	        q[9] = new Quote{Id = 9, Quotation = "Exercise is to the body as reading is to your mind.", Author = "Joseph Addison"};
-	        q[10] = new Quote{Id = 10, Quotation = "The universe rearranges itself to accommodate your picture of reality.", Author = "Unknown"};
-	        q[11] = new Quote{Id = 11, Quotation = "All our dreams can come true, if we have the courage to pursue them.", Author = "Walt Disney"};
-
-            return q;
-        }
 
         public QuoteController(ILogger<QuoteController> logger)
         {
@@ -44,30 +27,99 @@ namespace qotd_csharp.Controllers
         }
 
         [HttpGet("quotes")]
-        public Quote[] AllQuotes() {
-            return _quotes();
+        public List<Quote> AllQuotes() {
+            // Get all quotes from database
+
+            return GetQuotesAsync().Result;
         }
+                
 
         [HttpGet("quotes/{quoteId}")]
         public Quote OneQuote(int quoteId) {
-            return _quotes()[quoteId];
+            return GetQuoteByIdAsync(quoteId).Result;
         }
 
         [HttpGet("quotes/random")]
         public Quote Random() {
-            Random r = new Random();
-            int i = r.Next(_quotes().Length);
-            return _quotes()[i];
+            return GetRandomQuoteAsync().Result;
         }
 
         [HttpGet("version")]
         public string Version() {
-            return "2.0.0";
+            return "4.0.0";
         }
 
         [HttpGet("writtenin")]
         public string WrittenIn() {
             return "C#";
+        }
+
+        private async Task<List<Quote>> GetQuotesAsync() {
+            // Get all quotes from database
+            string sqlStatement = "SELECT id, quotation, author FROM quotes ORDER BY id";
+            string MySqlConnectionString = "Server=mysql;User ID=root;Password=admin;Database=quotesdb;";
+
+            using var connection = new MySqlConnection(MySqlConnectionString);
+            await connection.OpenAsync();
+
+            var quoteList = new List<Quote>();
+
+            using var command = new MySqlCommand(sqlStatement, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            while (await reader.ReadAsync())
+            {
+                var q = new Quote();
+                q.Quotation = reader["quotation"].ToString();
+                q.Author = reader["author"].ToString();
+                q.Id = Convert.ToInt32(reader["Id"]);
+
+                quoteList.Add(q);           
+             }
+            return quoteList;
+        }
+
+        private async Task<Quote> GetQuoteByIdAsync(int theId) {
+            // Get one quote from database
+            string sqlStatement = String.Format("SELECT id, quotation, author FROM quotes WHERE id = {0}",theId);
+            string MySqlConnectionString = "Server=mysql;User ID=root;Password=admin;Database=quotesdb;";
+
+            using var connection = new MySqlConnection(MySqlConnectionString);
+            await connection.OpenAsync();
+
+            var quoteList = new List<Quote>();
+
+            using var command = new MySqlCommand(sqlStatement, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            var q = new Quote();
+            while (await reader.ReadAsync())
+            {
+                q.Quotation = reader["quotation"].ToString();
+                q.Author = reader["author"].ToString();
+                q.Id = Convert.ToInt32(reader["Id"]);
+             }
+            return q;
+        }
+
+        private async Task<Quote> GetRandomQuoteAsync() {
+            // Get one RANDOM quote from database
+            string sqlStatement = String.Format("SELECT id, quotation, author FROM quotes ORDER BY RAND() LIMIT 1");
+            string MySqlConnectionString = "Server=mysql;User ID=root;Password=admin;Database=quotesdb;";
+
+            using var connection = new MySqlConnection(MySqlConnectionString);
+            await connection.OpenAsync();
+
+            var quoteList = new List<Quote>();
+
+            using var command = new MySqlCommand(sqlStatement, connection);
+            using var reader = await command.ExecuteReaderAsync();
+            var q = new Quote();
+            while (await reader.ReadAsync())
+            {
+                q.Quotation = reader["quotation"].ToString();
+                q.Author = reader["author"].ToString();
+                q.Id = Convert.ToInt32(reader["Id"]);
+             }
+            return q;
         }
     }
 }
