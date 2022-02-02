@@ -16,7 +16,7 @@ spec:
       - name: ASPNETCORE_URLS
         value: 'http://0.0.0.0:5000'
       containers:
-      - name: qotd-csharp-v1
+      - name: qotd-csharp
         image: quay.io/donschenck/qotd-csharp:v1
         ports:
         - containerPort: 5000
