@@ -6,7 +6,7 @@ metadata:
   name: qotd
 spec:
   port:
-    targetPort: 10000-tcp
+    targetPort: 5000-tcp
   to:
     kind: Service
     name: qotd
