@@ -6,10 +6,10 @@ metadata:
   name: qotd
 spec:
   ports:
-  - name: 10000-tcp
-    port: 10000
+  - name: 5000-tcp
+    port: 5000
     protocol: TCP
-    targetPort: 10000
+    targetPort: 5000
   - name: 8443-tcp
     port: 8443
     protocol: TCP
