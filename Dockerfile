@@ -20,4 +20,5 @@ RUN dotnet publish "qotd-csharp.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+USER 1001
 ENTRYPOINT ["dotnet", "qotd-csharp.dll"]
