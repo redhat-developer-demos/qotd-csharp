@@ -23,7 +23,7 @@ namespace qotd_csharp.Controllers
 
         [HttpGet]
         public string Index() {
-            return "qotd microservice. Check out the code at: https://github.com/donschenck/qotd-csharp";
+            return "qotd microservice. Check out the code at: https://github.com/redhat-developer-demos/qotd-csharp";
         }
 
         [HttpGet("quotes")]
@@ -56,8 +56,8 @@ namespace qotd_csharp.Controllers
 
         private async Task<List<Quote>> GetQuotesAsync() {
             // Get all quotes from database
-            string sqlStatement = "SELECT id, quotation, author FROM quotes ORDER BY id";
-            string MySqlConnectionString = "Server=mysql;User ID=root;Password=admin;Database=quotesdb;";
+            string sqlStatement = "SELECT Id, Quotation, Author FROM quotes ORDER BY Id";
+            string MySqlConnectionString = Environment.GetEnvironmentVariable("QUOTE_DB_CONNECTION_STRING");
 
             using var connection = new MySqlConnection(MySqlConnectionString);
             await connection.OpenAsync();
@@ -81,7 +81,7 @@ namespace qotd_csharp.Controllers
         private async Task<Quote> GetQuoteByIdAsync(int theId) {
             // Get one quote from database
             string sqlStatement = String.Format("SELECT id, quotation, author FROM quotes WHERE id = {0}",theId);
-            string MySqlConnectionString = "Server=mysql;User ID=root;Password=admin;Database=quotesdb;";
+            string MySqlConnectionString = Environment.GetEnvironmentVariable("QUOTE_DB_CONNECTION_STRING");
 
             using var connection = new MySqlConnection(MySqlConnectionString);
             await connection.OpenAsync();
