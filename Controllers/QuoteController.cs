@@ -103,7 +103,7 @@ namespace qotd_csharp.Controllers
         private async Task<Quote> GetRandomQuoteAsync() {
             // Get one RANDOM quote from database
             string sqlStatement = String.Format("SELECT id, quotation, author FROM quotes ORDER BY RAND() LIMIT 1");
-            string MySqlConnectionString = "Server=mysql;User ID=root;Password=admin;Database=quotesdb;";
+            string MySqlConnectionString = Environment.GetEnvironmentVariable("QUOTE_DB_CONNECTION_STRING");
 
             using var connection = new MySqlConnection(MySqlConnectionString);
             await connection.OpenAsync();
